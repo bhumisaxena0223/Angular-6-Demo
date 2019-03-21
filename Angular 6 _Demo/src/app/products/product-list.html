@@ -1,0 +1,64 @@
+<div class="card">
+    <div class="card-header jumbotron">
+        {{pageTitle}}
+    </div>
+    <div class='card-body'>
+            <div class='row'>
+                <div class='col-md-2'>Filter by:</div>
+                <div class='col-md-4'>
+                    <input type='text' [(ngModel)]='filterValue' />
+                </div>
+            </div>
+            <div class='row' >
+                <div class='col-md-6'>
+                    <h3>Filtered by: 
+                       {{filterValue}} 
+                    </h3>
+                </div>
+            </div>
+    
+            <!-- <div class='has-error' *ngIf='errorMessage'>{{errorMessage}}</div> -->
+    
+            <div class='table-responsive'>
+                <table class='table table-hover' *ngIf='Products && Products.length'>
+                    <thead>
+                        <tr>
+                            <th>
+                                <button class='btn btn-primary' (click)='toggle()'>
+                                    {{ showImage ? 'Hide' : 'Show'}} Image 
+                                </button>
+                            </th>
+                            <th>Product</th>
+                            <th>Code</th>
+                            <th>Available</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>5 Star Rating</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let Product of filtered'>
+                            <td>
+                                <img
+                                [src]= 'Product.imageUrl'
+                                height="50" [title]='Product.productName'
+                                *ngIf='showImage'
+                                >
+                            </td>
+                            <td><a [routerLink]="['/products', Product.productId]" >{{Product.productName}}</a></td>
+                            <td>{{Product.productCode | lowercase | convertToSpaces: '-'}}</td>
+                            <td>{{Product.releaseDate | uppercase}}</td>
+                            <td>{{Product.description}}</td>
+                            <td>{{Product.price  | currency:'USD' : 'symbol' : '1.2-3'}}</td>
+                            <td>
+                                <pm-star [rating]='Product.starRating' (notify)='onNotify($event)'></pm-star>
+                            </td>                               
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    </div>
+    <!-- <app-charts></app-charts> -->
+
+</div>

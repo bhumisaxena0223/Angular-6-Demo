@@ -1,0 +1,34 @@
+
+<div style="text-align:center" class="container">
+  <h2>Upload Files and Folder </h2>
+<form [formGroup]="form" class="form-inline mb-2"> 
+    Add File: 
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+        </div>
+        <div class="custom-file">
+          <input id="fileinput" (change)="getFileDetails($event)" type="file" formControlName="addFile" class="custom-file-input" id="inputGroupFile01">
+          <label class="custom-file-label" >Choose file</label>
+        </div>
+      </div>
+    Add Folder:
+    <div class="file-area">
+        <input class="custom-file-input"
+        #folderInput
+        type="file" formControlName="addFolder" (change)="filesPicked(folderInput.files,$event)"
+        webkitDirectory>
+        <div class="file-dummy">
+            <span class="default"></span>
+            <span class="success">Click to select a file, or drag it here</span>
+        </div>
+    </div>
+    <div class="alert alert-primary" role="alert">
+      Do Not Upload Folder more than 4 MB.
+    </div><hr>
+    <button type="submit" class="btn btn-primary" (click)="uploadFiles()">submit</button>
+
+</form>
+<router-outlet></router-outlet>
+</div>
+

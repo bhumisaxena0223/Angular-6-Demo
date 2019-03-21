@@ -1,0 +1,13 @@
+<div class="jumbotron">
+  
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label>First Name</label>
+            <input type="file" formControlFile="firstName" class="form-control" />
+            <!-- <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback"></div> -->
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary">Register</button>
+  </div>
+</form>
+</div>

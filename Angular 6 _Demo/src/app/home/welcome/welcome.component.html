@@ -1,0 +1,56 @@
+
+<div>
+  <div>
+   <h3> {{ pageTitle }}</h3>
+      <div class="row" style="text-align: left;">
+        <div class="col">
+          <form [formGroup]="form" (Submit)="saveProduct()">
+              <div class="form-group mb-2">
+                  <label class="input-group-text" for="inputGroupSelect01">Options</label>&nbsp;&nbsp;
+                    <input type="text" id="myInput" autocomplete="off" formControlName="brandName" (keyup)="myFunction()" placeholder="Search for names..">
+                    <ul id="myUL">
+                      <li><a href="#">Adele</a></li>
+                      <li><a href="#">Agnes</a></li>
+
+                      <li><a href="#">Billy</a></li>
+                      <li><a href="#">Bob</a></li>
+
+                      <li><a href="#">Calvin</a></li>
+                      <li><a href="#">Christina</a></li>
+                      <li><a href="#">Cindy</a></li> 
+                    </ul>
+              </div>
+              <div class="form-group mb-2">
+                  <label class="input-group-text" for="inputGroupSelect01">email</label>&nbsp;&nbsp;
+                    <input type="text" formControlName="email" style="border-bottom:solid 1px black;" class="form-control" placeholder="Enter"> 
+              </div>
+                <form class="form-inline" [formGroup]="form" formArrayName="products" *ngFor="let p of form.get('products').controls; let i=index">
+                    <div [formGroupName]="i" >
+                        <div class="form-group">
+                            <label class="input-group-text" for="inputGroupSelect02">Product Name</label>&nbsp;&nbsp;
+                              <input type="text" formControlName="name" style="border-bottom:solid 1px black;" class="form-control" placeholder="Enter"> 
+                        </div>
+                        <div class="form-group">
+                            <label class="input-group-text" for="inputGroupSelect02">Product Description</label>&nbsp;&nbsp;
+                              <input type="text" formControlName="description" style="border-bottom:solid 1px black;" class="form-control" placeholder="Enter"> 
+                        </div>
+                        <div class="form-group">
+                            <label class="input-group-text" for="inputGroupSelect02">Product Price</label>&nbsp;&nbsp;
+                              <select class="custom-select" id="inputGroupSelect01" formControlName="price">
+                                <option selected>
+                                <input type="text" style="border-bottom:solid 1px black;" class="form-control" placeholder="Enter"> 
+                                </option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                              </select>
+                        </div>
+                    </div>
+                </form>
+              <button type="submit" class="btn btn-primary" (click)="saveProduct()">submit</button>
+              <button type="button" class="btn btn-success"  (click)="addProduct()">Add Product</button>
+              <button type="button" *ngIf='i!=0' class="btn btn-dark" (click)="removeProduct()">remove Product</button>
+            </form>
+        </div>
+  </div>
+</div>

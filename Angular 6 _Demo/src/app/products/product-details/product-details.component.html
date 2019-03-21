@@ -1,0 +1,12 @@
+<div class="card container" *ngIf='product'>
+  <br>
+  <br>
+  <div class="card-header jumbotron">
+    {{ pageTitle + ' : ' + product.productName }}
+  </div>
+  <button class='btn btn-outline-secondary'
+  (click)='OnBack()'
+  style='width:80px'>
+  <i class='fa fa-chevron-left'></i> Back
+</button>
+</div>
